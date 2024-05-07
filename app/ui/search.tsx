@@ -10,15 +10,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const { replace } = useRouter()
   const searchParams = useSearchParams();
 
-  function handleSearch(term: string) {
-    
     const handleSearch = useDebouncedCallback((term) => {
-      // Implement search functionality here
       console.log(`Searching... ${term}`);
+     
       const params = new URLSearchParams(searchParams);
-
-      params.set('page', '1');
-
       if (term) {
         params.set('query', term);
       } else {
@@ -26,7 +21,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       }
       replace(`${pathname}?${params.toString()}`);
     }, 300);
-  }
+
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">
